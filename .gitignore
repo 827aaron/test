@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+
+# 本地数据与密钥 —— 绝不提交
+data/
+config/local.toml
+config/secrets.local.toml
+*.enc
+.env
+.env.*
+
+# Node / Tauri
+node_modules/
+app/src-tauri/target/
+dist/
+
+.DS_Store

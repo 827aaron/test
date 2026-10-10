@@ -1,0 +1,92 @@
+# 默认配置（可以提交到仓库，绝不放任何密钥）。
+# 用户自己的修改写在 config/local.toml（已 gitignore），只需写要覆盖的项。
+
+[engine]
+mode = "testnet"                 # testnet | live（切 live 需二次确认）
+listen_host = "127.0.0.1"        # 禁止暴露公网
+listen_port = 8765
+data_dir = "data"
+
+[exchange]
+# demo = 币安 Demo Trading（demo-fapi.binance.com，NautilusTrader 的 TESTNET 也指向这里）
+# testnet = 旧版合约测试网（testnet.binancefuture.com）
+# live = 实盘
+environment = "demo"
+recv_window_ms = 5000
+
+[scanner]
+interval_sec = 300
+scope = "all"                    # all | top10 | top30 | whitelist
+min_quote_volume_24h = 50_000_000
+min_listing_days = 30
+max_spread_pct = 0.05
+min_depth_usd = 200_000
+depth_band_pct = 0.5
+tier_a_min_quote_volume = 150_000_000
+tier_a_max_spread_pct = 0.03
+blacklist = []
+whitelist = []
+timeframes = ["15m", "1h"]
+
+[scanner.signals]
+volume_spike_mult = 3.0
+breakout_lookback_h = 24
+oi_increase_1h_pct = 5.0
+funding_abs_pct = 0.05
+funding_top_pct = 5.0
+liquidation_mult = 3.0
+bb_squeeze_lookback_d = 7
+bb_expand_mult = 1.5
+rel_strength_4h_pct = 3.0
+
+[scanner.selection]
+min_signals = 2
+min_score = 60
+max_per_round = 5
+symbol_cooldown_min = 60
+max_meetings_per_hour = 4
+max_same_direction = 3
+btc_halt_move_1h_pct = 3.0
+btc_halt_min = 15
+
+[risk]                           # 只能比程序里的硬上限更严
+risk_per_trade_pct = 1.0         # 硬上限 1.0
+max_leverage = 3                 # 硬上限 3
+daily_loss_halt_pct = 3.0        # 硬上限 3.0
+max_same_direction_risk_pct = 3.0
+tier_b_size_mult = 0.5
+ev_min_ratio = 0.2
+slippage_est_pct = 0.05
+taker_fee_pct = 0.05
+maker_fee_pct = 0.02
+default_p_win = 0.45
+funding_hold_hours = 4
+
+[execution]
+ticket_valid_sec = 180
+entry_timeout_sec = 60
+max_entry_deviation_pct = 0.3
+stop_place_retries = 2
+
+[portfolio]
+breakeven_at_r = 1.0
+partial_take_at_r = 1.5
+partial_take_fraction = 0.5
+trailing_atr_mult = 2.0
+time_stop_hours = 4
+time_stop_min_progress_r = 0.3
+adverse_move_r = 0.8
+adverse_window_sec = 60
+check_interval_sec = 1
+
+[reconcile]
+interval_sec = 60
+
+[strategy]
+atr_stop_mult = 1.5
+take_profit_r = 2.5
+entry_band_pct = 0.1
+
+[telegram]
+enabled = false
+mode = "important"               # brief | full | important

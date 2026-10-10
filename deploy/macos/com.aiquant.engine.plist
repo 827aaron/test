@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- 引擎后台服务：开机（登录）自启，崩溃自动重启。install.sh 会把 __REPO__ / __UV__ 替换成实际路径。 -->
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.aiquant.engine</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>__UV__</string><string>run</string><string>--frozen</string><string>aiquant</string><string>run</string>
+  </array>
+  <key>WorkingDirectory</key><string>__REPO__</string>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><true/>
+  <key>ThrottleInterval</key><integer>10</integer>
+  <key>StandardOutPath</key><string>__REPO__/data/logs/engine.log</string>
+  <key>StandardErrorPath</key><string>__REPO__/data/logs/engine.err.log</string>
+</dict>
+</plist>
